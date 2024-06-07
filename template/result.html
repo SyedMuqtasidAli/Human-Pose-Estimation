@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Result</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Upload Image for Pose Prediction">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        text-align: center;
+        padding: 20px;
+      }
+      h1 {
+        color: #333;
+        margin-top: 30px;
+        font-size: 36px;
+      }
+      h2 {
+        color: #5151;
+        margin-top: 40px;
+        font-size: 28px;
+      }
+      .image-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 20px;
+      }
+      .image-grid img {
+        max-width: 100%;
+        height: auto;
+        margin: 10px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        padding: 10px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .nav-buttons {
+        margin-top: 20px;
+      }
+      .nav-buttons a {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 0 10px;
+        background-color: #4CAF50;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+      }
+      .nav-buttons a:hover {
+        background-color: #45a049;
+      }
+      .posture-result {
+        font-weight: bold;
+        margin-top: 20px;
+        color: #515151;
+      }
+        
+   
+    </style>
+  </head>
+  <body>
+    <div class="nav-buttons">
+      <a href="">Image</a>
+      <a href="live">Live</a>
+    </div>
+    <h1>Pose Prediction Result</h1>
+
+    <h2>Original Image:</h2>
+    <div class="image-grid">
+      <img src="{{ original_image }}" alt="Original Image">
+    </div>
+
+    <h2>Predict Image:</h2>
+    <div class="image-grid">
+      <img src="{{ predict_image }}" alt="Skeleton Image">
+    </div>
+
+    <h2>Posture Evaluation:</h2>
+    <p class="posture-result">
+      {% if 'correct position' in posture_result %}
+        <span class="correct-position">{{ posture_result }}</span>
+      {% elif 'unable to determine' in posture_result %}
+        <span class="unable-to-determine">{{ posture_result }}</span>
+      {% else %}
+        {{ posture_result }}
+      {% endif %}
+    </p>
+  </body>
+</html>
